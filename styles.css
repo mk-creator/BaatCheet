@@ -1,12 +1,23 @@
+:root {
+  --bg: #121212;
+  --panel-bg: #1e1e1e;
+  --border: #333;
+  --text: #e0e0e0;
+  --accent: #007bff;
+  --accent-hover: #0056b3;
+  --success: #28a745;
+  --success-hover: #218838;
+  --gap: 16px;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #121212; /* Dark background for body */
-    color: #e0e0e0; /* Light text color for contrast */
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
 }
 
 .chat-container {
@@ -93,4 +104,139 @@ body {
 
 #send-button:hover {
     background-color: #0056b3; /* Darker shade on hover */
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) minmax(400px, 2fr);
+  gap: var(--gap);
+  width: calc(100vw - 2*var(--gap));
+  height: calc(100vh - 2*var(--gap));
+  padding: var(--gap);
+  box-sizing: border-box;
+  background: var(--bg);
+}
+
+/* Shared scrollable area styling */
+.scrollable-div {
+    height: auto;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Left signaling panel */
+.signaling-container {
+    width: 85%;
+    max-width: 400px;
+    height: 91vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid #333;
+    background-color: #1e1e1e;
+    padding: 10px;
+}
+
+.signaling-messages {
+    flex: 1;
+    padding: 10px;
+    background-color: #1e1e1e;
+    overflow-y: auto;
+    border-bottom: 1px solid #333;
+}
+
+.signaling-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+#signaling-input {
+    min-height: 100px;
+    background-color: #333;
+    color: #e0e0e0;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    resize: vertical;
+}
+
+#signaling-send-button {
+    align-self: flex-end;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#signaling-send-button:hover {
+    background-color: #218838;
+}
+
+.signaling-container.collapsed {
+  width: 0;
+  opacity: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+/* Carousel wrapper around chat + transfer panes */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Inner flex‐wrapper that holds both panels side by side */
+.carousel-panel-wrapper {
+  display: flex;
+  width: 200%; /* two panels */
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Each panel takes 50% of wrapper (i.e. 100% of container) */
+.carousel-panel {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Arrows at top center */
+.carousel-arrow {
+  position: fixed;
+  top: 0px;
+  background: rgba(30,30,30,0.8);
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+.left-arrow  { left: 1800px; }
+.right-arrow { right: 60px; }
+
+/* Style transfer panel inputs */
+.transfer-input {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-bg);
+}
+.transfer-status {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--panel-bg);
 }

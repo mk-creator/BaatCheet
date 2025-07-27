@@ -3,25 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App ver 1.0</title>
+    <title>Chat App ver 2.0</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="scrollable-div" id="scrollable-div">
-            <div class="chat-messages" id="chat-messages">
-                <!-- Example messages -->
-                <!-- <div class="message sent">Hello! How are you?</div>
-                <div class="message received">I'm good, thanks! How about you?</div>
-                <div class="message sent">I'm great, just working on a project.</div> -->
+    <button id="toggle-signaling" class="toggle-btn">Toggle Signaling Pane</button>
+    <div class="main-container">
+        <!-- Signaling Side -->
+        <div class="signaling-container" id="signaling-pane">
+            <div class="scrollable-div" id="signaling-scrollable">
+                <div class="signaling-messages" id="signaling-messages">
+                    <!-- Manual signaling messages like offer/answer/ICE go here -->
+                </div>
             </div>
-        </div>        
-        <div class="chat-input">
-            <input type="text" placeholder="Type a message..." id="message-input">
-            <button id="send-button">Send</button>
+            <div class="signaling-input">
+                <textarea placeholder="Paste or type signaling data..." id="signaling-input"></textarea>
+                <button id="signaling-send-button">Send</button>
+            </div>
+        </div>
+
+        <!-- Chat Side -->
+        <div class="carousel-container">
+            <button class="carousel-arrow left-arrow" id="prev-pane">❮</button>
+    
+            <div class="carousel-panel-wrapper">
+                <!-- Panel 1: Chat -->
+                <div class="carousel-panel chat-panel" id="chat-panel">
+                    <div class="scrollable-div" id="scrollable-div">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Actual chat messages -->
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type a message." id="message-input">
+                        <button id="send-button">Send</button>
+                    </div>
+                </div>
+    
+                <!-- Panel 2: Data Transfer -->
+                <div class="carousel-panel transfer-panel" id="transfer-panel">
+                    <div class="transfer-input">
+                        <input type="file" id="fileInput">
+                        <button id="sendFileBtn" disabled>Send File</button>
+                    </div>
+                    <div class="transfer-status" id="transfer-status">
+                        <!-- File‐transfer progress/messages go here -->
+                    </div>
+                </div>
+            </div>
+    
+            <button class="carousel-arrow right-arrow" id="next-pane">❯</button>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyC_DhEw50HwqL8exmCEz6tVNg_VgDijU_4",
+        authDomain: "baatcheet-f5cb5.firebaseapp.com",
+        databaseURL: "https://baatcheet-f5cb5-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "baatcheet-f5cb5",
+        storageBucket: "baatcheet-f5cb5.firebasestorage.app",
+        messagingSenderId: "158617187427",
+        appId: "1:158617187427:web:41f472c00fa63a460f7456"
+    };
 
-    <script src="script.js"></script>
+    firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script_ak.js"></script> <!-- Using the new script file -->
 </body>
 </html>

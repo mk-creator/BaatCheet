@@ -1,3 +1,3 @@
 BaatCheet minimal chat app
 
-site: https://mk-creator.github.io/BaatCheet/
+site: https://0ahmadkhan.github.io/BaatCheet/
